@@ -20,13 +20,13 @@ request = {
 ```
 
 Where...
-`pw`        = the password to be validated
-`reqLength` = the number of characters required in the password
-`reqSymbol` = true if a symbol is required in the password, false if not
-`reqCaps`   = true if a capital letter is required in the password, false if not
-`reqNum`    = true if a number is required in the password, false if not
-
-This object should be `stringified` before being sent as a request
+`pw`        = the password to be validated  
+`reqLength` = the number of characters required in the password  
+`reqSymbol` = true if a symbol is required in the password, false if not  
+`reqCaps`   = true if a capital letter is required in the password, false if not  
+`reqNum`    = true if a number is required in the password, false if not  
+  
+This object should be `stringified` before being sent as a request  
 
 ### The response JSON Object will have the following key-value pairs of the following types:
 
@@ -38,11 +38,11 @@ response = {
 ```
 
 Where...
-`isValid` = true if the potential password is valid based on the input parameters, false otherwise
-`message` = contains a message about what the potential password is lacking if it is INVALID based on the parameters. Contains an empty string otherwise.
-
-
-NOTE: `message` can be printed directly to the application to warn a user of their mistakes, or can be printed to the console for testing purposes.
+`isValid` = true if the potential password is valid based on the input parameters, false otherwise  
+`message` = contains a message about what the potential password is lacking if it is INVALID based on the parameters. Contains an empty string otherwise.  
+  
+  
+NOTE: `message` can be printed directly to the application to warn a user of their mistakes, or can be printed to the console for testing purposes.  
 
 ### UML Sequence Diagram for the microservice
 
