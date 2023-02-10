@@ -1,0 +1,24 @@
+{
+  "name": "pw-validator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kanisxlupus/pw-validator.git"
+  },
+  "author": "Samantha Jones",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kanisxlupus/pw-validator/issues"
+  },
+  "homepage": "https://github.com/kanisxlupus/pw-validator#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "forever": "^4.0.3"
+  }
+}
