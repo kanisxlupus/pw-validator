@@ -72,6 +72,9 @@ npm install
 * When making a PUT request to a localhost server, replace "localhost" with "127.0.0.1", as this is the local IP address.
 
 ### Example call to the server using an XMLHttpRequest in Javascript
+  
+The following code example will send the PUT request when a submit button is clicked, and print the response values to the screen.
+  
 ```
 let form = document.getElementById("send-request");
 
