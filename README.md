@@ -51,53 +51,86 @@ NOTE: `message` can be printed directly to the application to warn a user of the
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* Node.js v16.14.2
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* [Fork the respository and clone it to your machine](https://docs.github.com/en/get-started/quickstart/fork-a-repo)  
+* While in the main directory on your local machine, execute  
+```
+npm install
+```  
+* In `app.js`, change the value of `PORT` to the local port you wish to run it on (`PORT = 8080` by deafult).
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+* To run the program, execute `node app.js` from the main directory
+* To make a request to the server hosted locally, open a `PUT` request to `127.0.0.1:PORT/validation` with the request header content type of `application/json` (see below code for example usage).
 
 ## Help
 
-Any advise for common problems or issues.
+* When making a PUT request to a localhost server, replace "localhost" with "127.0.0.1", as this is the local IP address.
+
+### Example call to the server using an XMLHttpRequest in Javascript
 ```
-command to run if program contains helper info
+let form = document.getElementById("send-request");
+
+form.addEventListener("submit", function(e)
+{
+    e.preventDefault();
+
+    // Setup Request
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "http://127.0.0.1:8080/validation", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    // Build object
+    let password = {
+        pw: "password",
+        reqLength: 10,
+        reqSymbol: true,
+        reqCaps: true,
+        reqNum: true
+    }
+
+    // Tell Request how to resolve
+    xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200)
+        {
+            console.log("sending request");
+            //Recieve data
+            showResponse(xhttp.response);
+        }
+        else if (xhttp.readyState == 4 && xhttp.status != 200)
+        {
+            console.log("There was an error");
+        }
+    }
+
+    // Send the request
+    xhttp.send(JSON.stringify(password));
+});
+
+showResponse = (data) => {
+    let responseP = document.getElementById("response");
+
+    parsedData = JSON.parse(data);
+
+    responseP.innerText = `Valid: ${parsedData.isValid}\nMessage: ${parsedData.message}\n`;
+}
 ```
 
 ## Authors
 
 Contributors names and contact info
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
+* [Samantha Jones](https://github.com/kanisxlupus)
 
 ## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
 * 0.1
     * Initial Release
 
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+* [DomPizzie README Template](https://gist.github.com/DomPizzie/7a5ff55ffa9081f2de27c315f5018afc)
+* [currym-osu Node.js Starter App](https://github.com/osu-cs340-ecampus/nodejs-starter-app)
