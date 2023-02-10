@@ -4,7 +4,49 @@ A microservice that accepts a potential password along with password parameters 
 
 ## Description
 
-This is a node.js / express server that can be called to validate a potential password for account creation. By making a PUT request to `/validation`, 
+This is a node.js / express server that can be called to validate a potential password for account creation. By making a PUT request to `/validation`, a client can pass a stringified JSON Object to the server containing the potential password, as well as a variety of password requirements. The server will then analyze the password based on these requirements, and return a JSON Object back containing a boolean value to determine if the password was valid, and a message about why the password failed if it was invalid.
+
+### The request JSON Object must have the following key-value pairs of the following types:
+
+```
+request = {
+    pw:         STRING,
+    reqLength:  INT,
+    reqSymbol:  BOOLEAN,
+    reqCaps:    BOOLEAN,
+    reqNum:     BOOLEAN
+}
+
+```
+
+Where...
+`pw`        = the password to be validated
+`reqLength` = the number of characters required in the password
+`reqSymbol` = true if a symbol is required in the password, false if not
+`reqCaps`   = true if a capital letter is required in the password, false if not
+`reqNum`    = true if a number is required in the password, false if not
+
+This object should be `stringified` before being sent as a request
+
+### The response JSON Object will have the following key-value pairs of the following types:
+
+```
+response = {
+    isValid: BOOLEAN,
+    message: STRING
+}
+```
+
+Where...
+`isValid` = true if the potential password is valid based on the input parameters, false otherwise
+`message` = contains a message about what the potential password is lacking if it is INVALID based on the parameters. Contains an empty string otherwise.
+
+
+NOTE: `message` can be printed directly to the application to warn a user of their mistakes, or can be printed to the console for testing purposes.
+
+### UML Sequence Diagram for the microservice
+
+[](PasswordValidator.png)
 
 ## Getting Started
 

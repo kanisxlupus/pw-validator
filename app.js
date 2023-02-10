@@ -30,7 +30,7 @@ app.get('/', function(req, res)
 
     where...
         pw -> string containing password to be validated
-        reqLength -> int representation of the number of characters required in the password (> 0)
+        reqLength -> int representation of the number of characters required in the password
         reqSymbol -> true if a symbol is required
         reqCaps -> true if a capital letter is required
         reqNum -> true if a number is required
